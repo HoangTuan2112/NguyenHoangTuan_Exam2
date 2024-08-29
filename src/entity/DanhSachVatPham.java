@@ -96,6 +96,9 @@ public class DanhSachVatPham {
         System.out.println("============Danh sach vat pham co gia mua cao nhat============");
         List<VatPham> vatPhamList = new ArrayList<>();
         float max = maxXu();
+        if(danhSachVatPham == null){
+            throw new RuntimeException("Danh sach vat pham rong");
+        }
         for (VatPham vatPham : danhSachVatPham) {
             if (vatPham.giaMua() == max) {
                 vatPhamList.add(vatPham);
@@ -120,8 +123,13 @@ public class DanhSachVatPham {
         Scanner sc = new Scanner(System.in);
         System.out.println("cau 4");
         System.out.println("Nhap xu ma Spon da thu duoc");
-        float xu = sc.nextFloat();
-        System.out.println("Tong gia can de mua tat ca cac vat pham"+tongGiaCan());
+        float xu = 0;
+        try {
+            xu = sc.nextFloat();
+        } catch (Exception e) {
+            throw new RuntimeException("Nhap sai kieu du lieu xu (phai la so thuc)");
+        }
+        System.out.println("Tong gia can de mua tat ca cac vat pham "+tongGiaCan());
 
         if (tongGiaCan() <= xu) {
             System.out.println("Spon co the giai cuu");
