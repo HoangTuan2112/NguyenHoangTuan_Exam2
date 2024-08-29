@@ -124,8 +124,17 @@ public class DanhSachVatPham {
         System.out.println("cau 4");
         System.out.println("Nhap xu ma Spon da thu duoc");
         float xu = 0;
+        boolean check = true;
         try {
-            xu = sc.nextFloat();
+            while(check){
+                xu = sc.nextFloat();
+                if(xu >= 0){
+                    check = false;
+                }else{
+                    System.out.println("Xu phai lon hon bang 0");
+                    System.out.println("Nhap lai xu: ");
+                }
+            }
         } catch (Exception e) {
             throw new RuntimeException("Nhap sai kieu du lieu xu (phai la so thuc)");
         }
